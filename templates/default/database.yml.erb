@@ -1,0 +1,16 @@
+<%- @databases.each do |env, db| %>
+<%- if env =~ /#{@rails_env}/ %>
+<%= (env =~ /_default/ ? "production" : env) %>:
+  adapter: '<%= db['adapter'] %>'
+  host: '<%= db['host'] || @host %>'
+  <%- if @database['port'] -%>
+  port: <%= @database['port'] %>
+  <%- end -%>
+  database: '<%= db['database'] %>'
+  encoding: '<%= db.has_key?('encoding') ? db['encoding'] : 'utf8' %>'
+  username: '<%= @username %>'
+  password: '<%= @password %>'
+  reconnect: true <%- ['mode','pool','timeout','dsn','connection_name'].each do |setting| %>
+  <%= "#{setting}: #{db[setting]}" if db[setting] %><%- end %>
+<%- end %>
+<%- end %>
