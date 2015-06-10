@@ -3,7 +3,9 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
+  roles_path: 'test/cookbooks/roles/ruby_jobs.json'
+  environment: "staging"
 
 platforms:
   - name: ubuntu-12.04
@@ -11,9 +13,8 @@ platforms:
 
 suites:
   - name: default
+
     run_list:
+      - recipe[application_ruby_jobs::default]
 
-      - recipe[application_ruby_jobs::ruby_jobs]
-
-    attributes:
-		
+    attributes: { 'ruby_jobs': {'dir': '/var', 'filename': 'database.yml'} }

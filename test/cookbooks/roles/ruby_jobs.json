@@ -1,0 +1,83 @@
+{
+  "name": "ruby_jobs",
+  "description": "ruby_jobs",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+	  "ruby_jobs": {
+	  	"gnma_one": {
+	  		"deploy_to": "/var/gnma1",
+	  		"custom_bundle_path": true,
+		    "repo": "https://github.com/poise/test_rails.git",
+		    "owner": "www-data",
+		    "group": "www-data",
+		    "revision": {
+		      "test": "HEAD",
+		      "staging": "HEAD",
+		      "production": "HEAD"
+		    },
+		    "databases": {
+	        "gnma_one_staging": {
+	          "host": "DWMSSQLSTAGING1",
+	          "adapter": "sqlserver",
+	          "encoding": "utf8",
+	          "database": "inventory_management",
+	          "reconnect" :"true"
+	        },
+	        "gnma_one_production": {
+	          "host": "DWMSSQLPRODUCTION1",
+	          "adapter": "sqlserver",
+	          "encoding": "utf8",
+	          "database": "inventory_management",
+	          "reconnect" :"true"
+	        }
+	      },
+	      "users": {
+	        "staging": {
+	          "username": "username1"
+	        },
+				  "production": {
+		        "username": "username2"
+        	}
+        }
+	    },
+	    "gnma_two": {
+	    	"deploy_to": "/var/gnma2",
+	  		"custom_bundle_path": true,
+		    "repo": "https://github.com/poise/test_rails.git",
+		    "owner": "www-data",
+		    "group": "www-data",
+		    "revision": {
+		      "dev": "HEAD",
+		      "staging": "HEAD",
+		      "production": "HEAD"
+		    },
+		    "databases": {
+	        "gnma_one_staging": {
+	          "host": "DWMSSQLSTAGING1",
+	          "adapter": "sqlserver",
+	          "encoding": "utf8",
+	          "database": "inventory_management",
+	          "reconnect" :"true"
+	        },
+	        "gnma_one_production": {
+	          "host": "DWMSSQLPRODUCTION1",
+	          "adapter": "sqlserver",
+	          "encoding": "utf8",
+	          "database": "inventory_management",
+	          "reconnect" :"true"
+	        }
+	      },
+	      "users": {
+	        "staging": {
+	          "username": "'PNMAC\\00Gnmatlistg'"
+	        },
+				  "production": {
+		        "username": "'PNMAC\\00Gnmatliprod'"
+        	}
+        }
+	    }
+	  }
+	}
+}

@@ -16,6 +16,6 @@
 #
 
 name 'application_ruby_jobs_test'
-depends 'application_git'
+depends 'application'
 depends 'application_ruby_jobs'
 depends 'build-essential'

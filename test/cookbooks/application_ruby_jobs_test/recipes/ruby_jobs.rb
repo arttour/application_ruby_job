@@ -16,26 +16,26 @@
 
 include_recipe 'build-essential'
 
-package value_for_platform_family(debian: 'ruby-dev', rhel: 'ruby-devel')
-package value_for_platform_family(debian: 'zlib1g-dev', rhel: 'zlib-devel')
-package value_for_platform_family(debian: 'libsqlite3-dev', rhel: 'sqlite-devel')
-package 'tar' if platform_family?('rhel')
+# package value_for_platform_family(debian: 'ruby-dev', rhel: 'ruby-devel')
+# package value_for_platform_family(debian: 'zlib1g-dev', rhel: 'zlib-devel')
+# package value_for_platform_family(debian: 'libsqlite3-dev', rhel: 'sqlite-devel')
+# package 'tar' if platform_family?('rhel')
 
-application '/opt/test_rails' do
-  git 'https://github.com/poise/test_rails.git'
-  bundle_install do
-    deployment true
-    without %w{development test}
-  end
-  rails do
-    database 'sqlite3:///db.sqlite3'
-    migrate true
-    secret_token 'd78fe08df56c9'
-  end
-  unicorn do
-    port 9001
-  end
-end
+# application '/opt/test_rails' do
+#   git 'https://github.com/poise/test_rails.git'
+#   bundle_install do
+#     deployment true
+#     without %w{development test}
+#   end
+#   rails do
+#     database 'sqlite3:///db.sqlite3'
+#     migrate true
+#     secret_token 'd78fe08df56c9'
+#   end
+#   unicorn do
+#     port 9001
+#   end
+# end
 
 ruby_jobs 'job_name' do
 
@@ -67,4 +67,6 @@ ruby_jobs 'job_name' do
       database "ruby_jobs_production"
       reconnect true
   end
+
+end
 
