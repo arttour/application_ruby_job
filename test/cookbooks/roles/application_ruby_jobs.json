@@ -1,11 +1,11 @@
 {
-  "name": "ruby_jobs",
-  "description": "ruby_jobs",
+  "name": "application_ruby_jobs",
+  "description": "application_ruby_jobs",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
   "override_attributes": {
-	  "ruby_jobs": {
+	  "application_ruby_jobs": {
 	  	"gnma_one": {
 	  		"deploy_to": "/var/gnma1",
 	  		"custom_bundle_path": true,
@@ -79,5 +79,28 @@
         }
 	    }
 	  }
-	}
+	}, 
+	"build_essential": {
+        "compiletime": true
+  },
+  "rbenv": {
+	  "global": "2.1.6",
+	  "rubies": [
+	      "2.1.6"
+	  ],
+	  "gems": {
+	      "2.1.6": [
+	          { "name": "bundler" }
+	      ]
+      }
+  },
+  "run_list": [
+  	"recipe[build-essential]",
+  	"recipe[ruby_build]",
+    "recipe[rbenv::default]",
+    "recipe[rbenv::ruby_build]",
+    "recipe[application_ruby_jobs::default]"
+  ],
+  "env_run_lists": {
+  }
 }

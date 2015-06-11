@@ -4,8 +4,7 @@ driver:
 
 provisioner:
   name: chef_zero
-  roles_path: 'test/cookbooks/roles/ruby_jobs.json'
-  environment: "staging"
+  roles_path: 'test/cookbooks/roles'
 
 platforms:
   - name: ubuntu-12.04
@@ -16,5 +15,6 @@ suites:
 
     run_list:
       - recipe[application_ruby_jobs::default]
+      - role[application_ruby_jobs]
 
-    attributes: { 'ruby_jobs': {'dir': '/var', 'filename': 'database.yml'} }
+    attributes:
