@@ -83,22 +83,10 @@
 	"build_essential": {
         "compiletime": true
   },
-  "rbenv": {
-	  "global": "2.1.6",
-	  "rubies": [
-	      "2.1.6"
-	  ],
-	  "gems": {
-	      "2.1.6": [
-	          { "name": "bundler" }
-	      ]
-      }
-  },
+  "chef_type": "role",
   "run_list": [
-  	"recipe[build-essential]",
-  	"recipe[ruby_build]",
-    "recipe[rbenv::default]",
-    "recipe[rbenv::ruby_build]",
+  	// "recipe[build-essential]",
+  	// "recipe[ruby_build::default]",
     "recipe[application_ruby_jobs::default]"
   ],
   "env_run_lists": {

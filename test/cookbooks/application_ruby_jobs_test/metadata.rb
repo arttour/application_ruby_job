@@ -18,4 +18,5 @@
 name 'application_ruby_jobs_test'
 depends 'application'
 depends 'application_ruby_jobs'
+depends 'apt'
 depends 'build-essential'

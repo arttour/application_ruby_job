@@ -42,7 +42,7 @@ Include `application_ruby_jobs` in your node's `run_list`:
 Author:: Dave Watts (dwatts@arttour.com)
 
 * Iterate over mutliple jobs
-*    deploy each job to default_dir/job_name/releases directory
-*    link to current -> releases/release_id directory
-*    [option] create DB config/ link into current
+*    done - deploy each job to default_dir/job_name/releases directory
+*    done - link to current -> releases/release_id directory
+*    TODO: create DB config/ link into current
 *    [option] create cron job

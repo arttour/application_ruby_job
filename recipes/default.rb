@@ -7,52 +7,60 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# include_recipe 'rbenv::default'
-# include_recipe 'rbenv::ruby_build'
+include_recipe 'ruby_build'
 # include_recipe 'application_procfile'
 
-# rbenv_ruby '2.1.2' do
-#   global true
-# end
 
-# rbenv_gem 'bundler' do
-#   ruby_version '2.1.2'
-# end
+group "www-data" do
+	action :create
+end
 
-# application 'example' do
-#   path "/var/#{name}"
-#   name  "#{name}"
-#   owner 'www-data'
-#   group 'www-data'
+user 'www-data' do
+  supports :manage_home => true
+  comment 'application user'
+  gid 'www-data'
+  shell '/bin/bash'
+  action :create
+end
 
-#   repository 'https://github.com/poise/test_rails.git'
+ruby_build_ruby "2.1.6" do
+	action :install
+end
 
-#   # bundle_install do
-#   #   deployment true
-#   #   without %w{development test}
-#   # end
+application 'example' do
+  path "/var/#{name}"
+  name  "#{name}"
+  owner 'www-data'
+  group 'www-data'
 
-#   # just_ruby do
-#   #   bundle_command '/opt/rbenv/shims/bundle'
-#   # end
+  repository 'https://github.com/poise/test_rails.git'
 
-# end
+  # bundle_install do
+  #   deployment true
+  #   without %w{development test}
+  # end
 
-# application 'example2' do
-#   path "/var/#{name}"
-#   name 'example'
-#   owner 'www-data'
-#   group 'www-data'
+  # just_ruby do
+  #   bundle_command '/opt/rbenv/shims/bundle'
+  # end
 
-#   repository 'https://github.com/poise/test_rails.git'
+end
+
+application 'example2' do
+  path "/var/#{name}"
+  name 'example'
+  owner 'www-data'
+  group 'www-data'
+
+  repository 'https://github.com/poise/test_rails.git'
   
-#   # bundle_install do
-#   #   deployment true
-#   #   without %w{development test}
-#   # end
+  # bundle_install do
+  #   deployment true
+  #   without %w{development test}
+  # end
 
-#   # just_ruby do
-#   #   bundle_command '/opt/rbenv/shims/bundle'
-#   # end
+  # just_ruby do
+  #   bundle_command '/opt/rbenv/shims/bundle'
+  # end
 
-# end
+end
